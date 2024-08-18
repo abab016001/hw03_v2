@@ -1,5 +1,5 @@
 function LoadUtilHtml(targetId, href) {
-    var url = "/util/" + href;
+    var url = "../util/" + href;
     fetch(url)
         .then(response => {
             if (!response.ok) {
