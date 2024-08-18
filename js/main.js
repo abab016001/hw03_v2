@@ -6,9 +6,9 @@ class Main {
         "../js/transform-tool.js",
         "../js/import-html.js",
         // table
-        "../js/_recommend.js",
-        "../js/_product_style.js",
-        "../js/_product.js"
+        "../js/recommend.js",
+        "../js/product_style.js",
+        "../js/product.js"
     ];
     #importJs(src) {
         var s = document.createElement('script');
