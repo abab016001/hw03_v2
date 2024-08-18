@@ -1,7 +1,7 @@
 class Recommend {
     #package(_pkno, _user, _feedback, _date, _alt) {        
         var json = {
-            "pkno":_pkno, "user":_user, "feedback":_feedback, "date":_date, "alt":_alt, "src":`/img/${_alt}.png`
+            "pkno":_pkno, "user":_user, "feedback":_feedback, "date":_date, "alt":_alt, "src":`../img/${_alt}.png`
         }
         return new Map(Object.entries(json));
     }

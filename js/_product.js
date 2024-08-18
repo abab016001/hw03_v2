@@ -6,7 +6,7 @@ class Product {
             "name":_name, 
             "price":`NTD${new Number(_price).toLocaleString()}`, 
             "alt":_alt, 
-            "src":`/img/${_alt}.png`
+            "src":`../img/${_alt}.png`
         }
         return new Map(Object.entries(json));
     }
