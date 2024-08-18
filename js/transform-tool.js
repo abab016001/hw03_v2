@@ -72,7 +72,6 @@ function StringToJsonFormat(str) {
     }
     rtn = rtn.substring(0, rtn.length - 1);
     rtn = `{${rtn}}`;
-    console.log("rtn: " + rtn);
     return rtn;
 }
 

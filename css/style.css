@@ -400,7 +400,9 @@ section {
     font-size: 32px;
     text-align: center;
     color: #000;
-    border: 1px solid var(--alto);
+    border-left: 1px solid var(--alto);
+    border-right: 1px solid var(--alto);
+    border-bottom: 1px solid var(--alto);
 }
 
 @media screen and (max-width: 992px) {
@@ -415,7 +417,7 @@ section {
     }
 }
 
-.product-nav-selected {
+.product-nav-selected.product-nav-selected {
     border-bottom: 5px solid var(--milano-red);
 }
 
