@@ -1,14 +1,14 @@
 class Main {
     #jsList = [
-        "dao.js",
-        "controller.js",
-        "manager.js",
-        "transform-tool.js",
-        "import-html.js",
+        "../js/dao.js",
+        "../js/controller.js",
+        "../js/manager.js",
+        "../js/transform-tool.js",
+        "../js/import-html.js",
         // table
-        "_recommend.js",
-        "_product_style.js",
-        "_product.js"
+        "../js/_recommend.js",
+        "../js/_product_style.js",
+        "../js/_product.js"
     ];
     #importJs(src) {
         var s = document.createElement('script');
