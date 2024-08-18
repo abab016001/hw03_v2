@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="/js/main.js"></script>
+    <script>
+        window.onload = (event) => {
+            processMain();
+        }
+
+        function processMain() {
+            LoadUtilHtml("header", "header.html");
+            LoadUtilHtml("footer", "footer.html");
+
+            processQuery('{"style_cd":"00"}');
+        }
+
+        function processQuery(paramObj) {
+            var parentGrid = document.getElementById("product-ul-Grid");
+            var resultMapList = controller.processProductStyle(paramObj);
+            var result = resultMapList[0];
+            var h1 = document.querySelector(".product-frame div h1");
+            var h2 = document.querySelector(".product-frame div h2");
+            h1.textContent = result.name;
+            h2.textContent = result.chi_name;
+            if (result.style_cd == "00") {
+                parentGrid.classList.remove("product-ul-3");
+                if (!parentGrid.classList.contains("product-ul-4")) {
+                    parentGrid.classList.add("product-ul-4");
+                }
+            } else if (result.style_cd == "01") {
+                parentGrid.classList.remove("product-ul-4");
+                if (!parentGrid.classList.contains("product-ul-3")) {
+                    parentGrid.classList.add("product-ul-3");
+                }
+            }
+
+            resultMapList = controller.processProduct(paramObj);
+            var origin_innerHtml = SelectorToInnerHtml(".product-ul-Grid-li");
+            parentGrid.innerHTML = "";
+            for (resultMap of resultMapList) {
+                var new_li = CreateElement("li", "", "eff-btn");
+                new_li.innerHTML = origin_innerHtml;
+                var img = new_li.querySelector("img");
+                img.setAttribute("src", resultMap.src);
+                img.setAttribute("alt", resultMap.alt);
+                new_li.querySelectorAll("div h3")[0].textContent = resultMap.name;
+                new_li.querySelectorAll("div h3")[1].textContent = resultMap.price;
+                parentGrid.append(new_li);
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <!-- 嵌入 header -->
+    <div id="header"></div>
+    <!-- 內文 -->
+    <nav>
+        <div class="container container-md">
+            <ul class="d-flex">
+                <li class="product-nav text-medium eff-btn" onclick="processQuery('{style_cd:00}');">OPTICAL</li>
+                <li class="product-nav text-medium eff-btn" onclick="processQuery('{style_cd:01}');">SUNGLASSES</li>
+                <li class="product-nav text-medium eff-btn" onclick="processQuery('{style_cd:02}');">FUNCTIONAL</li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <div class="container container-md">
+            <ul class="d-flex">
+                <picture class="w-2">
+                    <source srcset="/img/product-header-sm-1.png" media="(max-width: 992px)">
+                    <img src="/img/product-header-1.png" alt="product-header1">
+                </picture>
+                <picture class="w-2">
+                    <source srcset="/img/product-header-sm-2.png" media="(max-width: 992px)">
+                    <img src="/img/product-header-2.png" alt="product-header2">
+                </picture>
+            </ul>
+        </div>
+    </main>
+    <section class="product-frame">
+        <div class="container container-sm">
+            <h1 class="product-h1 text-medium text-center">Celluloid Combi</h1>
+            <h2 class="product-h2 text-medium text-center">賽璐珞鈦金屬混合鏡框</h2>
+            <ul id="product-ul-Grid" class="product-ul"></ul>            
+        </div>
+    </section>
+    <!-- 嵌入 footer -->
+    <div id="footer"></div>
+
+    <!-- GridTemplate -->
+    <div class="d-none">
+        <li class="product-ul-Grid-li eff-btn">
+            <img src="/img/product-1.png" alt="product-1">
+            <div class="d-flex space-between">
+                <h3 class="product-h3 text-medium">BJ41600S</h3>
+                <h3 class="product-h3 text-medium c-milano-red">NTD3,490</h3>
+            </div>
+            <div class="d-flex">
+                <i class="product-i bg-quincy"></i>
+                <i class="product-i bg-tuscany"></i>
+            </div>
+        </li>
+    </div>
+</body>
+
+</html>
