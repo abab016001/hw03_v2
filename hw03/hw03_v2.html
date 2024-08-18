@@ -27,17 +27,7 @@
             var h2 = document.querySelector(".product-frame div h2");
             h1.textContent = result.name;
             h2.textContent = result.chi_name;
-            if (result.style_cd == "00") {
-                parentGrid.classList.remove("product-ul-3");
-                if (!parentGrid.classList.contains("product-ul-4")) {
-                    parentGrid.classList.add("product-ul-4");
-                }
-            } else if (result.style_cd == "01") {
-                parentGrid.classList.remove("product-ul-4");
-                if (!parentGrid.classList.contains("product-ul-3")) {
-                    parentGrid.classList.add("product-ul-3");
-                }
-            }
+            switchStyleCd(result.style_cd);
 
             resultMapList = controller.processProduct(paramObj);
             var origin_innerHtml = SelectorToInnerHtml(".product-ul-Grid-li");
@@ -51,6 +41,38 @@
                 new_li.querySelectorAll("div h3")[0].textContent = resultMap.name;
                 new_li.querySelectorAll("div h3")[1].textContent = resultMap.price;
                 parentGrid.append(new_li);
+            }
+        }
+
+        function switchStyleCd(style_cd) {
+            var parentGrid = document.getElementById("product-ul-Grid");
+            var header00 = document.getElementById("product-header-00");
+            var header01 = document.getElementById("product-header-01");
+            if (style_cd == "00") {
+                parentGrid.classList.remove("product-ul-3");
+                if (!parentGrid.classList.contains("product-ul-4")) {
+                    parentGrid.classList.add("product-ul-4");
+                }
+                header00.classList.remove("d-none");
+                if (!header01.classList.contains("d-none")) {
+                    header01.classList.add("d-none");
+                }
+            } else if (style_cd == "01") {
+                parentGrid.classList.remove("product-ul-4");
+                if (!parentGrid.classList.contains("product-ul-3")) {
+                    parentGrid.classList.add("product-ul-3");
+                }
+                header01.classList.remove("d-none");
+                if (!header00.classList.contains("d-none")) {
+                    header00.classList.add("d-none");
+                }
+            } else {
+                if (!header00.classList.contains("d-none")) {
+                    header00.classList.add("d-none");
+                }
+                if (!header01.classList.contains("d-none")) {
+                    header01.classList.add("d-none");
+                }
             }
         }
 
@@ -80,7 +102,7 @@
     </nav>
     <main>
         <div class="container container-md">
-            <ul class="d-flex">
+            <ul id="product-header-00" class="d-flex">
                 <picture class="w-2">
                     <source srcset="../img/product-header-sm-1.png" media="(max-width: 992px)">
                     <img src="../img/product-header-1.png" alt="product-header1">
@@ -88,6 +110,16 @@
                 <picture class="w-2">
                     <source srcset="../img/product-header-sm-2.png" media="(max-width: 992px)">
                     <img src="../img/product-header-2.png" alt="product-header2">
+                </picture>
+            </ul>
+            <ul id="product-header-01" class="d-flex d-none">
+                <picture class="w-2">
+                    <source srcset="../img/product-header-sm-3.png" media="(max-width: 992px)">
+                    <img src="../img/product-header-3.png" alt="product-header3">
+                </picture>
+                <picture class="w-2">
+                    <source srcset="../img/product-header-sm-4.png" media="(max-width: 992px)">
+                    <img src="../img/product-header-4.png" alt="product-header4">
                 </picture>
             </ul>
         </div>
